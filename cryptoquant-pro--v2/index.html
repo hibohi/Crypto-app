@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryptoQuant Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'brand-bg': 'var(--color-bg)',
+              'brand-surface': 'var(--color-surface)',
+              'brand-border': 'var(--color-border)',
+              'brand-primary': 'var(--color-primary)',
+              'brand-secondary': 'var(--color-secondary)',
+              'brand-text': 'var(--color-text)',
+              'brand-success': 'var(--color-success)',
+              'brand-danger': 'var(--color-danger)',
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --color-bg: #0D1117;
+        --color-surface: #161B22;
+        --color-border: #30363D;
+        --color-primary: #58A6FF;
+        --color-secondary: #8B949E;
+        --color-text: #C9D1D9;
+        --color-success: #3FB950;
+        --color-danger: #F85149;
+        
+        /* New Modern Chart Palette */
+        --color-chart-blue: #3b82f6;
+        --color-chart-sky: #0ea5e9;
+        --color-chart-cyan: #06b6d4;
+        --color-chart-teal: #14b8a6;
+        --color-chart-green: #22c55e;
+        --color-chart-lime: #84cc16;
+        --color-chart-yellow: #f59e0b;
+        --color-chart-orange: #f97316;
+        --color-chart-red: #ef4444;
+        --color-chart-pink: #ec4899;
+        --color-chart-purple: #8b5cf6;
+        --color-chart-indigo: #6366f1;
+      }
+      .light {
+        --color-bg: #F3F4F6;
+        --color-surface: #FFFFFF;
+        --color-border: #E5E7EB;
+        --color-primary: #2563EB;
+        --color-secondary: #6B7280;
+        --color-text: #1F2937;
+        --color-success: #22c55e;
+        --color-danger: #ef4444;
+
+        --color-chart-blue: #2563eb;
+        --color-chart-sky: #0284c7;
+        --color-chart-cyan: #0891b2;
+        --color-chart-teal: #0d9488;
+        --color-chart-green: #16a34a;
+        --color-chart-lime: #65a30d;
+        --color-chart-yellow: #d97706;
+        --color-chart-orange: #ea580c;
+        --color-chart-red: #dc2626;
+        --color-chart-pink: #db2777;
+        --color-chart-purple: #7c3aed;
+        --color-chart-indigo: #4f46e5;
+      }
+      .chart-container {
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .chart-3d-subtle {
+        transform: perspective(1200px) rotateX(10deg) rotateY(-10deg);
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .chart-3d-subtle:hover {
+        transform: perspective(1200px) rotateX(0) rotateY(0);
+      }
+      .chart-3d-iso {
+        transform: perspective(1200px) rotateX(25deg) rotateY(-35deg);
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+      }
+      .chart-3d-iso:hover {
+         transform: perspective(1200px) rotateX(20deg) rotateY(-30deg);
+      }
+      .info-tooltip-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+      .info-tooltip-text {
+        visibility: hidden;
+        width: 250px;
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        text-align: left;
+        font-weight: normal;
+        border-radius: 8px;
+        padding: 10px 14px;
+        position: absolute;
+        z-index: 10;
+        bottom: 150%;
+        left: 50%;
+        transform: translateX(-50%) scale(0.95);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        border: 1px solid var(--color-border);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2), 0 4px 6px -2px rgba(0,0,0,0.1);
+        font-size: 0.875rem;
+        line-height: 1.4rem;
+        pointer-events: none;
+      }
+      .info-tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -6px;
+        border-width: 6px;
+        border-style: solid;
+        border-color: var(--color-border) transparent transparent transparent;
+      }
+       .info-tooltip-container:hover .info-tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.9.0",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "recharts": "https://esm.sh/recharts@^3.1.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-bg text-brand-text">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
